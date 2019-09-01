@@ -15,6 +15,6 @@ public class ReceitaRepository implements IReceitaRepository {
 
     @Override
     public List<Receita> getAll() {
-        return null;
+        return receitaDao.getAll();
     }
 }

@@ -25,7 +25,7 @@ public class ReceitaRepositoryTest {
     private ReceitaDao dao;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         MockitoAnnotations.initMocks(this);
     }
 
@@ -37,6 +37,7 @@ public class ReceitaRepositoryTest {
         Mockito.when(fakeList.size()).thenReturn(1);
         List<Receita> all = repository.getAll();
 
+        Mockito.verify(dao).getAll();
         Assert.assertNotNull(all);
         Assert.assertThat(all.size(), is(1));
     }
