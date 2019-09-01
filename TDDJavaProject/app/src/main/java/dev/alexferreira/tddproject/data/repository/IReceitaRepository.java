@@ -1,4 +1,4 @@
-package dev.alexferreira.tddproject.data;
+package dev.alexferreira.tddproject.data.repository;
 
 import java.util.List;
 

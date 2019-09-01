@@ -2,7 +2,6 @@ package dev.alexferreira.tddproject.data.repository;
 
 import java.util.List;
 
-import dev.alexferreira.tddproject.data.IReceitaRepository;
 import dev.alexferreira.tddproject.data.model.Receita;
 import dev.alexferreira.tddproject.data.source.database.ReceitaDao;
 

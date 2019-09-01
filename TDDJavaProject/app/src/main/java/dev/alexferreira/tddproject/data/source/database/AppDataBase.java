@@ -6,7 +6,6 @@ import androidx.room.RoomDatabase;
 import dev.alexferreira.tddproject.data.model.Receita;
 
 @Database(entities = {Receita.class},version = 1)
-public abstract class AppDataBase extends RoomDatabase {
+public abstract class AppDataBase extends RoomDatabase implements DataBaseDaoCreator {
 
-    public abstract ReceitaDao receitaDao();
 }
