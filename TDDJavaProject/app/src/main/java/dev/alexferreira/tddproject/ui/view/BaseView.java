@@ -65,4 +65,8 @@ public abstract class BaseView<V extends IView, PresenterType extends IPresenter
         super.onDestroy();
         presenter.onViewDestroyed();
     }
+
+    public void setPresenter(PresenterType presenter) {
+        this.presenter = presenter;
+    }
 }
