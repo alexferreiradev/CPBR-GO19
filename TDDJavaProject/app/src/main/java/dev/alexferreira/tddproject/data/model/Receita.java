@@ -1,8 +1,8 @@
 package dev.alexferreira.tddproject.data.model;
 
-import androidx.room.ColumnInfo;
-import androidx.room.Entity;
-import androidx.room.PrimaryKey;
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
 
 @Entity
 public class Receita {
@@ -16,7 +16,13 @@ public class Receita {
     @ColumnInfo
     private String link;
 
-    Receita(Long id, String nome, String descricao, String link) {
+    /**
+     * Não utilize este construtor, use o builder
+     *
+     * @See dev.alexferreira.tddproject.data.model.ReceitaBuilder
+     */
+    // Deve ser publico para Room database criar DAO
+    public Receita(Long id, String nome, String descricao, String link) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;

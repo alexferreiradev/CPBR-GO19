@@ -1,9 +1,15 @@
 package dev.alexferreira.tddproject.data.model;
 
 public class ReceitaBuilder {
+    private Long id;
     private String nome;
     private String descricao;
     private String link;
+
+    public ReceitaBuilder setId(Long id) {
+        this.id = id;
+        return this;
+    }
 
     public ReceitaBuilder setNome(String nome) {
         this.nome = nome;
@@ -21,6 +27,6 @@ public class ReceitaBuilder {
     }
 
     public Receita createReceita() {
-        return new Receita(nome, descricao, link);
+        return new Receita(id, nome, descricao, link);
     }
 }

@@ -1,15 +1,14 @@
 package dev.alexferreira.tddproject.application;
 
 import android.app.Application;
-
-import androidx.room.RoomDatabase;
+import android.arch.persistence.room.RoomDatabase;
 
 import org.mockito.Mockito;
 
 import dev.alexferreira.tddproject.data.repository.IReceitaRepository;
 import timber.log.Timber;
 
-public class RoboletricApplication extends Application implements HasRoomDatabase, RepositoryCreator {
+public class RoboletricApplication extends Application implements RoomDatabaseCreator, RepositoryCreator {
 
     private RoomDatabase dataBase;
     private IReceitaRepository receitaRepo;

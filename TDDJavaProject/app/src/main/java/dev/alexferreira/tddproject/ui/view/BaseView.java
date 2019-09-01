@@ -10,8 +10,8 @@ import android.widget.ProgressBar;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import dev.alexferreira.tddproject.R;
-import dev.alexferreira.tddproject.application.HasRoomDatabase;
 import dev.alexferreira.tddproject.application.RepositoryCreator;
+import dev.alexferreira.tddproject.application.RoomDatabaseCreator;
 import dev.alexferreira.tddproject.data.source.database.DataBaseDaoCreator;
 import dev.alexferreira.tddproject.ui.contract.IPresenter;
 import dev.alexferreira.tddproject.ui.contract.IView;
@@ -41,7 +41,7 @@ public abstract class BaseView<V extends IView, PresenterType extends IPresenter
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Application application = getApplication();
-        daoCreator = (DataBaseDaoCreator) ((HasRoomDatabase) application).getDataBase();
+        daoCreator = (DataBaseDaoCreator) ((RoomDatabaseCreator) application).getDataBase();
         repositoryInstance = (RepositoryCreator) application;
         subView = (V) this;
 
