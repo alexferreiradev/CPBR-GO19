@@ -6,6 +6,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 import dev.alexferreira.tddproject.data.source.database.AppDataBase;
+import timber.log.Timber;
 
 public final class AppApplication extends Application implements HasRoomDatabase {
 
@@ -17,6 +18,7 @@ public final class AppApplication extends Application implements HasRoomDatabase
         super.onCreate();
 
         dataBase = Room.databaseBuilder(this, AppDataBase.class, DATABASE_NAME).build();
+        Timber.plant(new Timber.DebugTree());
     }
 
     @Override
