@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TDDJavaProject</string>
+    <string name="receitas_tv_empty">Não há receitas</string>
 </resources>
