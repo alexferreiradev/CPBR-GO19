@@ -3,14 +3,14 @@ package dev.alexferreira.tddproject.ui.presenter;
 import android.content.Intent;
 
 import dev.alexferreira.tddproject.data.model.Receita;
-import dev.alexferreira.tddproject.data.repository.ReceitaRepository;
+import dev.alexferreira.tddproject.data.repository.IReceitaRepository;
 import dev.alexferreira.tddproject.ui.contract.MainContract;
 
 public class MainPresenter extends BasePresenter<MainContract.View> implements MainContract.Presenter {
 
-    private ReceitaRepository receitaRepository;
+    private IReceitaRepository receitaRepository;
 
-    public MainPresenter(ReceitaRepository receitaRepository) {
+    public MainPresenter(IReceitaRepository receitaRepository) {
         this.receitaRepository = receitaRepository;
     }
 

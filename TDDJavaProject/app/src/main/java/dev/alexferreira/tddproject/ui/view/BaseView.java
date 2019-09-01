@@ -11,6 +11,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import dev.alexferreira.tddproject.R;
 import dev.alexferreira.tddproject.application.HasRoomDatabase;
+import dev.alexferreira.tddproject.application.RepositoryCreator;
 import dev.alexferreira.tddproject.data.source.database.DataBaseDaoCreator;
 import dev.alexferreira.tddproject.ui.contract.IPresenter;
 import dev.alexferreira.tddproject.ui.contract.IView;
@@ -19,6 +20,7 @@ public abstract class BaseView<V extends IView, PresenterType extends IPresenter
 
     protected PresenterType presenter;
     protected DataBaseDaoCreator daoCreator;
+    protected RepositoryCreator repositoryInstance;
     private V subView;
 
     @BindView(R.id.progressBar)
@@ -39,9 +41,8 @@ public abstract class BaseView<V extends IView, PresenterType extends IPresenter
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Application application = getApplication();
-        if (application instanceof HasRoomDatabase) {
-            daoCreator = (DataBaseDaoCreator) ((HasRoomDatabase) application).getDataBase();
-        }
+        daoCreator = (DataBaseDaoCreator) ((HasRoomDatabase) application).getDataBase();
+        repositoryInstance = (RepositoryCreator) application;
         subView = (V) this;
 
         ButterKnife.bind(this);

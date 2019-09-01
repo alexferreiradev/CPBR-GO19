@@ -1,33 +1,44 @@
 package dev.alexferreira.tddproject.ui.view;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
 
 import butterknife.BindView;
 import dev.alexferreira.tddproject.R;
 import dev.alexferreira.tddproject.data.model.Receita;
-import dev.alexferreira.tddproject.data.repository.ReceitaRepository;
 import dev.alexferreira.tddproject.helper.ViewHelper;
 import dev.alexferreira.tddproject.ui.contract.MainContract;
 import dev.alexferreira.tddproject.ui.presenter.MainPresenter;
 
-public class MainActivity extends BaseView implements MainContract.View, MainContract.Navigation {
+public class MainActivity extends BaseView<MainContract.View, MainContract.Presenter> implements MainContract.View, MainContract.Navigation {
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
     @BindView(R.id.tv_empty)
     TextView emptyTV;
+    @BindView(R.id.fab_add)
+    FloatingActionButton addFAB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        presenter = new MainPresenter(new ReceitaRepository(daoCreator.createReceitaDao()));
+        presenter = new MainPresenter(repositoryInstance.getReceitaRepo());
+
+        addFAB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                presenter.selectAddReceita();
+            }
+        });
     }
 
     @Override
