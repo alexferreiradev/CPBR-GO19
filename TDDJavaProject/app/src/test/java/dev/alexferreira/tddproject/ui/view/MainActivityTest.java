@@ -17,7 +17,7 @@ import dev.alexferreira.tddproject.application.RoboletricApplication;
 import dev.alexferreira.tddproject.ui.contract.MainContract;
 
 @RunWith(RobolectricTestRunner.class)
-@Config(application = RoboletricApplication.class)
+@Config(application = RoboletricApplication.class, sdk = 28)
 public class MainActivityTest {
 
     private MainActivity mainActivity;

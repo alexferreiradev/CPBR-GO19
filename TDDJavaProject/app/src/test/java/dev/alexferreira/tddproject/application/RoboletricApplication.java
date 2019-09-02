@@ -6,6 +6,7 @@ import android.arch.persistence.room.RoomDatabase;
 import org.mockito.Mockito;
 
 import dev.alexferreira.tddproject.data.repository.IReceitaRepository;
+import dev.alexferreira.tddproject.data.source.database.DataBaseDaoCreator;
 import timber.log.Timber;
 
 public class RoboletricApplication extends Application implements RoomDatabaseCreator, RepositoryCreator {
@@ -17,7 +18,7 @@ public class RoboletricApplication extends Application implements RoomDatabaseCr
     public void onCreate() {
         super.onCreate();
 
-        dataBase = Mockito.mock(RoomDatabase.class);
+        dataBase = Mockito.mock(RoomDatabase.class, Mockito.withSettings().extraInterfaces(DataBaseDaoCreator.class));
         receitaRepo = Mockito.mock(IReceitaRepository.class);
         Timber.plant(new Timber.DebugTree());
     }

@@ -26,8 +26,8 @@ public class MainActivity extends BaseView<MainContract.View, MainContract.Prese
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        super.onCreate(savedInstanceState);
 
         presenter = new MainPresenter(repositoryInstance.getReceitaRepo());
 
