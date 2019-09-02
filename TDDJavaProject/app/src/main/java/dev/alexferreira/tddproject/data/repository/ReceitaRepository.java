@@ -3,6 +3,7 @@ package dev.alexferreira.tddproject.data.repository;
 import java.util.List;
 
 import dev.alexferreira.tddproject.data.model.Receita;
+import dev.alexferreira.tddproject.data.repository.exception.RepositoryException;
 import dev.alexferreira.tddproject.data.source.database.ReceitaDao;
 
 public class ReceitaRepository implements IReceitaRepository {
@@ -14,7 +15,7 @@ public class ReceitaRepository implements IReceitaRepository {
     }
 
     @Override
-    public List<Receita> getAll() {
+    public List<Receita> getAll() throws RepositoryException {
         return receitaDao.getAll();
     }
 }

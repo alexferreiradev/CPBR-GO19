@@ -11,6 +11,7 @@ import org.mockito.MockitoAnnotations;
 import java.util.List;
 
 import dev.alexferreira.tddproject.data.model.Receita;
+import dev.alexferreira.tddproject.data.repository.exception.RepositoryException;
 import dev.alexferreira.tddproject.data.source.database.ReceitaDao;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -31,14 +32,16 @@ public class ReceitaRepositoryTest {
 
     @SuppressWarnings("unchecked")
     @Test
-    public void getAll() {
+    public void getAll() throws RepositoryException {
         List fakeList = Mockito.mock(List.class);
         Mockito.when(dao.getAll()).thenReturn(fakeList);
         Mockito.when(fakeList.size()).thenReturn(1);
-        List<Receita> all = repository.getAll();
+        List<Receita> all = null;
 
-        Mockito.verify(dao).getAll();
+        all = repository.getAll();
+
         Assert.assertNotNull(all);
         Assert.assertThat(all.size(), is(1));
+        Mockito.verify(dao).getAll();
     }
 }
