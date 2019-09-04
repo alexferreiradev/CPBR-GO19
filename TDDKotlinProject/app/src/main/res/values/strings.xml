@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TDDKotlinProject</string>
+    <string name="receitas_tv_empty">Não há receitas cadastradas</string>
 </resources>
