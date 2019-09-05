@@ -28,7 +28,6 @@ class MainActivityUITest {
     @Before
     fun setUp() {
         app = InstrumentationRegistry.getTargetContext().applicationContext as AppApplication
-        app.receitaRepo
     }
 
     @Test

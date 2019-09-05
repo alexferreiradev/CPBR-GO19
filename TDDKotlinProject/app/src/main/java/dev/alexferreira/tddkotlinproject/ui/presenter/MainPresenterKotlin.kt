@@ -11,7 +11,7 @@ import dev.alexferreira.tddkotlinproject.ui.task.LoadReceitaTaskKotlin
 import dev.alexferreira.tddkotlinproject.ui.task.TaskCallback
 import javax.inject.Inject
 
-class MainPresenterKotlin constructor(val repository: Lazy<IReceitaRepository>) :
+class MainPresenterKotlin @Inject constructor(val repository: Lazy<IReceitaRepository>) :
     BasePresenter<MainContract.View>(),
     MainContract.Presenter {
 
