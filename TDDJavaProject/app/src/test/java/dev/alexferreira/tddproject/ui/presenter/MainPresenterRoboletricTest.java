@@ -5,17 +5,21 @@ import android.content.Intent;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.robolectric.RobolectricTestRunner;
 
 import dev.alexferreira.tddproject.data.model.Receita;
 import dev.alexferreira.tddproject.data.model.ReceitaBuilder;
 import dev.alexferreira.tddproject.data.repository.IReceitaRepository;
+import dev.alexferreira.tddproject.data.repository.exception.RepositoryException;
 import dev.alexferreira.tddproject.ui.contract.MainContract;
 
-public class MainPresenterTest {
+@RunWith(RobolectricTestRunner.class)
+public class MainPresenterRoboletricTest {
 
     @InjectMocks
     private MainPresenter presenter;
@@ -33,19 +37,12 @@ public class MainPresenterTest {
     }
 
     @Test
-    public void selectAddReceita() {
-        presenter.selectAddReceita();
+    public void whenStart_loadFromRepo() throws RepositoryException {
+        Intent fakeIntent = new Intent();
 
-        Mockito.verify(view).openAddReceitaView();
-    }
+        presenter.onViewStarted(fakeIntent);
 
-    @Test
-    public void selectReceitaItem() {
-        Receita fakeItem = new ReceitaBuilder()
-                .setNome("Titulo da receita")
-                .setLink("Teste de link").createReceita();
-        presenter.selectReceitaItem(fakeItem);
-
-        Mockito.verify(view).openReceitaView(fakeItem);
+        Mockito.verify(repository).getAll();
+        Mockito.verify(view).showEmptyText();
     }
 }
