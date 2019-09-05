@@ -46,6 +46,6 @@ public class MainPresenterTest {
                 .setLink("Teste de link").createReceita();
         presenter.selectReceitaItem(fakeItem);
 
-        Mockito.verify(view).openReceitaView(fakeItem);
+        Mockito.verify(view).openReceitaView(Mockito.any(Receita.class));
     }
 }
