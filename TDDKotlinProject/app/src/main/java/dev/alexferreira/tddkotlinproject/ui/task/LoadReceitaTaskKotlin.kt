@@ -8,8 +8,13 @@ class LoadReceitaTaskKotlin(repo: IReceitaRepository, callback: TaskCallback<Lis
     DefaultLoadTask<List<Receita>, IReceitaRepository>(repo, callback) {
 
     override fun doInBackground(vararg params: String?): TaskResult<List<Receita>> {
-        val all = repository.all
-        builder.setIsEmpty(true)
+        val modelList = repository.all
+        if (modelList.isEmpty()) {
+            builder.setIsEmpty(true)
+        } else {
+            builder.setModel(modelList)
+        }
+
         return builder.createTaskResult()
     }
 }
