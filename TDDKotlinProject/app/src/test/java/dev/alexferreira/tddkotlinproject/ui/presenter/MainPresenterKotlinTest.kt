@@ -2,6 +2,7 @@ package dev.alexferreira.tddkotlinproject.ui.presenter
 
 import android.content.Context
 import android.content.Intent
+import dev.alexferreira.tddkotlinproject.data.model.Receita
 import dev.alexferreira.tddkotlinproject.data.repository.IReceitaRepository
 import dev.alexferreira.tddkotlinproject.ui.contract.MainContract
 import org.junit.Test
@@ -36,7 +37,12 @@ class MainPresenterKotlinTest {
 
     @Test
     fun onViewStarted() {
-        Mockito.`when`(repository.all).thenReturn(ArrayList())
+        val arrayList = ArrayList<Receita>()
+        val receitaMock = Mockito.mock(Receita::class.java)
+        Mockito.`when`(receitaMock.descricao).thenReturn("teste fake desc")
+        arrayList.add(receitaMock)
+        Mockito.`when`(repository.all).thenReturn(arrayList)
+        assertEquals("teste fake desc", receitaMock.descricao)
 
         presenter.onViewStarted(Intent())
 

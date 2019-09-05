@@ -1,14 +1,18 @@
 package dev.alexferreira.tddkotlinproject.ui.presenter
 
 import android.content.Intent
+import dagger.Lazy
 import dev.alexferreira.tddkotlinproject.data.model.Receita
 import dev.alexferreira.tddkotlinproject.data.repository.IReceitaRepository
+import dev.alexferreira.tddkotlinproject.data.repository.ReceitaRepositoryKotlin
+import dev.alexferreira.tddkotlinproject.injection.scope.ActivityScope
 import dev.alexferreira.tddkotlinproject.ui.contract.MainContract
 import dev.alexferreira.tddkotlinproject.ui.task.LoadReceitaTaskKotlin
 import dev.alexferreira.tddkotlinproject.ui.task.TaskCallback
-import java.lang.Exception
+import javax.inject.Inject
 
-class MainPresenterKotlin(val repository: IReceitaRepository) : BasePresenter<MainContract.View>(),
+class MainPresenterKotlin constructor(val repository: Lazy<IReceitaRepository>) :
+    BasePresenter<MainContract.View>(),
     MainContract.Presenter {
 
     override fun onViewStarted(intent: Intent?) {
@@ -17,17 +21,20 @@ class MainPresenterKotlin(val repository: IReceitaRepository) : BasePresenter<Ma
     }
 
     private fun loadFromRepo() {
-        LoadReceitaTaskKotlin(repository, object : TaskCallback<List<Receita>> {
+        LoadReceitaTaskKotlin(repository.get(), object : TaskCallback<List<Receita>> {
             override fun onError(ex: Exception?) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
 
             override fun onEmptyData() {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                view.hidePB()
+                view.showEmptyText()
             }
 
             override fun onLoadData(model: List<Receita>?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                view.hidePB()
+                view.initReceitaList(model)
+                view.showList()
             }
         }).execute()
     }
