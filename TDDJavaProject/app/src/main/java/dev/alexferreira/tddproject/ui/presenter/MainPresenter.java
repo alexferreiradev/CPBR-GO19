@@ -33,12 +33,13 @@ public class MainPresenter extends BasePresenter<MainContract.View> implements M
 
             @Override
             public void onEmptyData() {
-
+                view.showEmptyText();
             }
 
             @Override
             public void onLoadData(List<Receita> model) {
-
+                view.initReceitaList(model);
+                view.showList();
             }
         }).execute();
     }
