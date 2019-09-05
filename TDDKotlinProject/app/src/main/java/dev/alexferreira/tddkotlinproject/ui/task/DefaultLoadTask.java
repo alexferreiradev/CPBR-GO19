@@ -4,13 +4,13 @@ import android.os.AsyncTask;
 import dev.alexferreira.tddkotlinproject.ui.task.model.TaskResult;
 import dev.alexferreira.tddkotlinproject.ui.task.model.TaskResultBuilder;
 
-abstract class DefaultLoadTask<M, R> extends AsyncTask<String, Integer, TaskResult<M>> {
+public abstract class DefaultLoadTask<M, R> extends AsyncTask<String, Integer, TaskResult<M>> {
 
-    protected R repository;
+    protected final R repository;
     TaskResultBuilder<M> builder = new TaskResultBuilder<>();
     private TaskCallback<M> callback;
 
-    DefaultLoadTask(R repository, TaskCallback<M> callback) {
+    public DefaultLoadTask(R repository, TaskCallback<M> callback) {
         this.callback = callback;
         this.repository = repository;
     }
