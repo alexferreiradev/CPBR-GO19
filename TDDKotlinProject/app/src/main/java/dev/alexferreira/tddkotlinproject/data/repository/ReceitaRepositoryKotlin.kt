@@ -8,11 +8,9 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @ApplicationScope
-class ReceitaRepositoryKotlin @Inject constructor(receitaDao: ReceitaDaoKotlin) : IReceitaRepository {
+class ReceitaRepositoryKotlin @Inject constructor(val receitaDao: ReceitaDaoKotlin) : IReceitaRepository {
 
-    override fun getAll(): MutableList<Receita> {
-        val arrayList = ArrayList<Receita>()
-        arrayList.add(Receita(1L,"Teste","teste",""))
-        return arrayList
+    override fun getAll(): List<Receita> {
+        return receitaDao.getAll()
     }
 }
